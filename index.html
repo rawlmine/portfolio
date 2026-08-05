@@ -1,0 +1,336 @@
+<html>
+<head>
+    <title>Portfolio</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    
+    .btn {
+        background: rgba(92, 92, 92, 0.493);
+        color: #333;
+        padding: 20px 110px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        position: absolute;
+    }   
+    
+    /* Обертка для галереи со стрелками */
+    .gallery-wrapper {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 1504px;
+    }
+
+    .gallery {
+        display: flex;
+        gap: 40px;
+        overflow-x: auto;
+        flex: 1;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE */
+    }
+
+    .gallery::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+
+    .gallery img {
+        width: 400px;
+        cursor: pointer;
+        object-fit: fill;
+        flex-shrink: 0;
+    }
+
+    /* Стрелки для галерей */
+    .gallery-arrow {
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+    }
+
+    .gallery-arrow:hover {
+        background: rgba(0, 0, 0, 0.8);
+        transform: scale(1.1);
+    }
+
+    .gallery-arrow:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* Стили для модальных окон */
+    .modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.85);
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity .3s ease;
+        z-index: 1000;
+    }
+
+    .modal.show {
+        display: flex;
+        opacity: 1;
+    }
+
+    .bigImage {
+        max-width: 90%;
+        max-height: 90%;
+        transform: scale(0.8);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .modal.show .bigImage {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 60px;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        padding: 20px;
+        z-index: 1001;
+    }
+
+    .left {
+        left: 30px;
+    }
+
+    .right {
+        right: 30px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 50px;
+        cursor: pointer;
+        user-select: none;
+        z-index: 1001;
+    }
+
+    .arrow:hover{
+        color: #aaaaaa;
+    }
+    .close:hover {
+        color: #ff4e4e;
+    }
+
+</style>
+
+</head>
+
+<body>
+    <div style="position: relative;">
+        <!-- Основное изображение -->
+        <img src="image/site.png" alt="" style="width: 100%;">
+        
+        <!-- Первая галерея - исправлены координаты -->
+        <div class="gallery-wrapper" style="top: 3475px; left: 306px;">
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-1', -1)">❮</button>
+            <div class="gallery gallery-1">
+                <img src="image/gallery/michurinski/mich1.png">
+                <img src="image/gallery/michurinski/mich2.png">
+                <img src="image/gallery/michurinski/mich3.jpg">
+                <img src="image/gallery/michurinski/mich4.png">
+                <img src="image/gallery/michurinski/mich5.jpg">
+                <img src="image/gallery/michurinski/mich6.jpg">
+                <img src="image/gallery/michurinski/mich7.png">
+                <img src="image/gallery/michurinski/mich8.png">
+            </div>
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-1', 1)">❯</button>
+        </div>
+        
+        <!-- Вторая галерея - исправлены координаты -->
+        <div class="gallery-wrapper" style="top: 4530px; left: 306px;">
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-2', -1)">❮</button>
+            <div class="gallery gallery-2">
+                <img src="image/gallery/peredelkino/pered1.png">
+                <img src="image/gallery/peredelkino/pered2.jpg">
+                <img src="image/gallery/peredelkino/pered3.jpeg">
+                <img src="image/gallery/peredelkino/pered4.jpeg">
+                <img src="image/gallery/peredelkino/pered5.jpg">
+                <img src="image/gallery/peredelkino/pered6.jpeg">
+                <img src="image/gallery/peredelkino/pered7.jpeg">
+                <img src="image/gallery/peredelkino/pered8.png">
+                <img src="image/gallery/peredelkino/pered9.png">
+                <img src="image/gallery/peredelkino/pered10.png">
+            </div>
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-2', 1)">❯</button>
+        </div>
+
+        <!-- Третья галерея - исправлены координаты -->
+        <div class="gallery-wrapper" style="top: 5460px; left: 306px;">
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-3', -1)">❮</button>
+            <div class="gallery gallery-3">
+                <img src="image/gallery/sber/sber1.png">
+                <img src="image/gallery/sber/sber2.png">
+                <img src="image/gallery/sber/sber3.png">
+                <img src="image/gallery/sber/sber4.png">
+                <img src="image/gallery/sber/sber5.png">
+                <img src="image/gallery/sber/sber6.png">
+                <img src="image/gallery/sber/sber7.png">
+                <img src="image/gallery/sber/sber8.png">
+                <img src="image/gallery/sber/sber9.png">
+                <img src="image/gallery/sber/sber10.png">
+            </div>
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-3', 1)">❯</button>
+        </div>
+
+        <!-- Четвертая галерея - исправлены координаты -->
+        <div class="gallery-wrapper" style="top: 6530px; left: 306px;">
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-4', -1)">❮</button>
+            <div class="gallery gallery-4">
+                <img src="image/gallery/glagolevs/glag1.png">
+                <img src="image/gallery/glagolevs/glag2.png">
+                <img src="image/gallery/glagolevs/glag3.png">
+                <img src="image/gallery/glagolevs/glag4.png">
+                <img src="image/gallery/glagolevs/glag5.png">
+                <img src="image/gallery/glagolevs/glag6.png">
+                <img src="image/gallery/glagolevs/glag7.png">
+                <img src="image/gallery/glagolevs/glag8.png">
+            </div>
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-4', 1)">❯</button>
+        </div>
+
+        <!-- Пятая галерея - исправлены координаты -->
+        <div class="gallery-wrapper" style="top: 7530px; left: 306px;">
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-5', -1)">❮</button>
+            <div class="gallery gallery-5">
+                <img src="image/gallery/michurinski/mich1.png">
+                <img src="image/gallery/michurinski/mich2.png">
+                <img src="image/gallery/michurinski/mich3.jpg">
+                <img src="image/gallery/michurinski/mich4.png">
+                <img src="image/gallery/michurinski/mich5.jpg">
+                <img src="image/gallery/michurinski/mich6.jpg">
+                <img src="image/gallery/michurinski/mich7.png">
+                <img src="image/gallery/michurinski/mich8.png">
+            </div>
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-5', 1)">❯</button>
+        </div>
+
+        <!-- Шестая галерея - исправлены координаты -->
+        <div class="gallery-wrapper" style="top: 8575px; left: 306px;">
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-6', -1)">❮</button>
+            <div class="gallery gallery-6">
+                <img src="image/gallery/dr_tower/dr_tower1.jpg">
+                <img src="image/gallery/dr_tower/dr_tower2.jpg">
+                <img src="image/gallery/dr_tower/dr_tower3.jpg">
+                <img src="image/gallery/dr_tower/dr_tower4.png">
+                <img src="image/gallery/dr_tower/dr_tower5.png">
+            </div>
+            <button class="gallery-arrow" onclick="scrollGallery('gallery-6', 1)">❯</button>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="btn btn-email" 
+         style="padding: 10px 130px; left: 525px; top: 925px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;"
+        data-copy-text="anna.zai.2005@yandex.ru"
+        onclick="copyText(this)">
+        &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; 
+        </div>
+
+        <div class="btn btn-phone" 
+        style="padding: 10px 70px; left: 215px; top: 925px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;"
+        data-copy-text="89960481033"
+        onclick="copyText(this)">
+        &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; 
+        </div>
+
+        <div class="btn btn-email" 
+         style="padding: 10px 130px; left: 405px; top: 9367px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;"
+        data-copy-text="anna.zai.2005@yandex.ru"
+        onclick="copyText(this)">
+        &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; 
+        </div>
+
+        <div class="btn btn-phone" 
+        style="padding: 10px 70px; left: 405px; top: 9312px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;"
+        data-copy-text="89960481033"
+        onclick="copyText(this)">
+        &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; &#8203; 
+        </div>
+
+        <!-- Модальное окно для первой галереи -->
+        <div id="modal1" class="modal">
+            <span class="arrow left">&#10094;</span>
+            <img class="bigImage" id="bigImage1">
+            <span class="arrow right">&#10095;</span>
+            <span class="close">&times;</span>
+        </div>
+        
+        <!-- Модальное окно для второй галереи -->
+        <div id="modal2" class="modal">
+            <span class="arrow left">&#10094;</span>
+            <img class="bigImage" id="bigImage2">
+            <span class="arrow right">&#10095;</span>
+            <span class="close">&times;</span>
+        </div>
+
+        <div id="modal3" class="modal">
+            <span class="arrow left">&#10094;</span>
+            <img class="bigImage" id="bigImage3">
+            <span class="arrow right">&#10095;</span>
+            <span class="close">&times;</span>
+        </div>
+
+        <div id="modal4" class="modal">
+            <span class="arrow left">&#10094;</span>
+            <img class="bigImage" id="bigImage4">
+            <span class="arrow right">&#10095;</span>
+            <span class="close">&times;</span>
+        </div>
+
+        <div id="modal5" class="modal">
+            <span class="arrow left">&#10094;</span>
+            <img class="bigImage" id="bigImage5">
+            <span class="arrow right">&#10095;</span>
+            <span class="close">&times;</span>
+        </div>
+
+        <div id="modal6" class="modal">
+            <span class="arrow left">&#10094;</span>
+            <img class="bigImage" id="bigImage6">
+            <span class="arrow right">&#10095;</span>
+            <span class="close">&times;</span>
+        </div>
+
+    </div>
+
+<script src="script.js"></script>
+</body>
+
+</html>
